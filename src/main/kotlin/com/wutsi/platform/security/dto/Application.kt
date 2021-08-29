@@ -9,6 +9,7 @@ import kotlin.collections.List
 
 public data class Application(
   public val id: Long = 0,
+  public val apiKey: String = "",
   public val name: String = "",
   public val title: String = "",
   public val description: String? = null,
