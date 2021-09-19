@@ -39,7 +39,7 @@ public interface WutsiSecurityApi {
 
   @RequestLine("GET /v1/applications?name={name}&limit={limit}&offset={offset}")
   @Headers("Content-Type: application/json")
-  public fun searchApplication(
+  public fun searchApplications(
     @Param("name") name: String? = null,
     @Param("limit") limit: Int = 20,
     @Param("offset") offset: Int = 0
