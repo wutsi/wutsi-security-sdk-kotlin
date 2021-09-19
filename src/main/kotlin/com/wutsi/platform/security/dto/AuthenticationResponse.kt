@@ -6,7 +6,7 @@ import kotlin.String
 
 public data class AuthenticationResponse(
   public val id: Long = 0,
-  public val type: String = "",
+  public val created: OffsetDateTime = OffsetDateTime.now(),
   public val expires: OffsetDateTime = OffsetDateTime.now(),
   public val accessToken: String = ""
 )

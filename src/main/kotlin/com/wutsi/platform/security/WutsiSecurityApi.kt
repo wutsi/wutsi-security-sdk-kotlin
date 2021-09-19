@@ -10,11 +10,14 @@ import com.wutsi.platform.security.dto.CreateScopeResponse
 import com.wutsi.platform.security.dto.GetApplicationResponse
 import com.wutsi.platform.security.dto.GetKeyResponse
 import com.wutsi.platform.security.dto.GrantScopeRequest
+import com.wutsi.platform.security.dto.SearchApplicationResponse
 import com.wutsi.platform.security.dto.SearchScopeResponse
 import feign.Headers
 import feign.Param
 import feign.RequestLine
+import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Unit
 
 public interface WutsiSecurityApi {
@@ -33,6 +36,14 @@ public interface WutsiSecurityApi {
   @RequestLine("POST /v1/scopes")
   @Headers("Content-Type: application/json")
   public fun createScope(request: CreateScopeRequest): CreateScopeResponse
+
+  @RequestLine("GET /v1/applications?name={name}&limit={limit}&offset={offset}")
+  @Headers("Content-Type: application/json")
+  public fun searchApplication(
+    @Param("name") name: String? = null,
+    @Param("limit") limit: Int = 20,
+    @Param("offset") offset: Int = 0
+  ): SearchApplicationResponse
 
   @RequestLine("POST /v1/applications")
   @Headers("Content-Type: application/json")
