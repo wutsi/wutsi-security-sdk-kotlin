@@ -22,23 +22,23 @@ import kotlin.Unit
 
 public interface WutsiSecurityApi {
   @RequestLine("POST /v1/keys")
-  @Headers("Content-Type: application/json")
+  @Headers(value=["Content-Type: application/json"])
   public fun createKey(): CreateKeyResponse
 
   @RequestLine("GET /v1/keys/{id}")
-  @Headers("Content-Type: application/json")
+  @Headers(value=["Content-Type: application/json"])
   public fun getKey(@Param("id") id: Long): GetKeyResponse
 
   @RequestLine("GET /v1/scopes")
-  @Headers("Content-Type: application/json")
+  @Headers(value=["Content-Type: application/json"])
   public fun searchScopes(): SearchScopeResponse
 
   @RequestLine("POST /v1/scopes")
-  @Headers("Content-Type: application/json")
+  @Headers(value=["Content-Type: application/json"])
   public fun createScope(request: CreateScopeRequest): CreateScopeResponse
 
   @RequestLine("GET /v1/applications?name={name}&limit={limit}&offset={offset}")
-  @Headers("Content-Type: application/json")
+  @Headers(value=["Content-Type: application/json"])
   public fun searchApplications(
     @Param("name") name: String? = null,
     @Param("limit") limit: Int = 20,
@@ -46,18 +46,22 @@ public interface WutsiSecurityApi {
   ): SearchApplicationResponse
 
   @RequestLine("POST /v1/applications")
-  @Headers("Content-Type: application/json")
+  @Headers(value=["Content-Type: application/json"])
   public fun createApplication(request: CreateApplicationRequest): CreateApplicationResponse
 
+  @RequestLine("GET /v1/applications/me")
+  @Headers(value=["X-Api-Key: {X-Api-Key}","Content-Type: application/json"])
+  public fun application(@Param("X-Api-Key") xApiKey: String): GetApplicationResponse
+
   @RequestLine("GET /v1/applications/{id}")
-  @Headers("Content-Type: application/json")
+  @Headers(value=["Content-Type: application/json"])
   public fun getApplication(@Param("id") id: Long): GetApplicationResponse
 
   @RequestLine("POST /v1/applications/{id}/scopes")
-  @Headers("Content-Type: application/json")
+  @Headers(value=["Content-Type: application/json"])
   public fun grantScopes(@Param("id") id: Long, request: GrantScopeRequest): Unit
 
   @RequestLine("POST /v1/auth")
-  @Headers("Content-Type: application/json")
+  @Headers(value=["Content-Type: application/json"])
   public fun authenticate(request: AuthenticationRequest): AuthenticationResponse
 }
