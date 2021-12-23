@@ -49,10 +49,6 @@ public interface WutsiSecurityApi {
   @Headers(value=["Content-Type: application/json"])
   public fun createApplication(request: CreateApplicationRequest): CreateApplicationResponse
 
-  @RequestLine("GET /v1/applications/me")
-  @Headers(value=["X-Api-Key: {X-Api-Key}","Content-Type: application/json"])
-  public fun application(@Param("X-Api-Key") xApiKey: String): GetApplicationResponse
-
   @RequestLine("GET /v1/applications/{id}")
   @Headers(value=["Content-Type: application/json"])
   public fun getApplication(@Param("id") id: Long): GetApplicationResponse
