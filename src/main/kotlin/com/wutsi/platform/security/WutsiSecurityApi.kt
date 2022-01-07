@@ -60,4 +60,8 @@ public interface WutsiSecurityApi {
   @RequestLine("POST /v1/auth")
   @Headers(value=["Content-Type: application/json"])
   public fun authenticate(request: AuthenticationRequest): AuthenticationResponse
+
+  @RequestLine("GET /v1/logout")
+  @Headers(value=["Content-Type: application/json"])
+  public fun logout(): Unit
 }
